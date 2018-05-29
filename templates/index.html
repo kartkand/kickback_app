@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  {% include 'header.html' %}
+
+  <body>
+
+    {% include 'navbar.html' %}
+
+    <section class="hero is-medium" id = "intro-section">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            <div class="column is-offset-4 is-4">
+              <h1 class="title" id = "typewrite-wrapper">
+                <span class = "is-red">Kickback&nbsp</span><span class="typewrite" data-period="2000" data-type='[ "reviews your purchase behavior.", "figures out what you like to buy.", "makes spending cheaper with personalized discounts."]'></span>
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero is-medium is-red-bg">
+      <div class="hero-body">
+        <div class="container">
+          <div class="level">
+            <h1 class = "level-item title is-l is-white">
+              How does it work?
+            </h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            <div class="column level">
+              <h1 class="subtitle is-2 is-red level-item"><strong>Our 3-step process.</strong></h1>
+              <br>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column is-2 is-offset-2">
+              <div class="step">
+                <div class="level" style="text-align:center">
+                  <img class = "image step-image level-item" src = "./static/images/recurring.png">
+                </div>
+                <h1 class="subtitle is-5" style="text-align:center">
+                  We identify what you like to buy a lot
+                </h1>
+              </div>
+            </div>
+            <div class="column is-2 is-offset-1">
+              <div class="step">
+                <div class="level" style="text-align:center">
+                  <img class = "image step-image level-item" src = "./static/images/grouping.png">
+                </div>
+                <h1 class="subtitle is-5" style="text-align:center">
+                  We learn how to best help you by categorizing your costs
+                </h1>
+              </div>
+            </div>
+            <div class="column is-2 is-offset-1">
+              <div class="step">
+                <div class="level" style="text-align:center">
+                  <img class = "image step-image level-item" src = "./static/images/recommended.png">
+                </div>
+                <h1 class="subtitle is-5" style="text-align:center">
+                  We provide tailored deals and discounts at the right time and place
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
+    </section>
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns is-vcentered">
+            <div class="column level is-3">
+              <h1 class = "title is-2 level-item">Our Mobile Application</h1>
+              <h1 class="subtitle is-3 level-item">
+                Designed for discounts on the go.
+              </h1>
+            </div>
+            <div class="column is-9">
+              <img src="./static/images/mockup.png" id = "mockup" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <br>
+
+    <section class="hero is-medium is-red-bg">
+      <div class="hero-body">
+        <div class="container">
+          <div class="level">
+            <h1 class = "level-item title is-l is-white">
+              <a id="get-started" href = "/signup">
+                Start Saving Today
+              </a>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% include 'footer.html' %}
+
+    <!-- Main JS File -->
+    <script type="text/javascript" src="./static/js/index.js"></script>
+    <script type="text/javascript" src="./static/js/typewrite.js"></script>
+
+  </body>
+
+</html>
+
+
+
+<!--
+We first identify what people are buying over and over again. We group the items by category, merchant, and purchase frequency. We then use machine learning to pick and choose the right discounts for you. -->

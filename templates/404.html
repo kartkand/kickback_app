@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  {% include 'header.html' %}
+
+  <body>
+
+    {% include 'navbar.html' %}
+
+    <section class="hero is-medium" id = "intro-section">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            <div class="column is-offset-4 is-4">
+              <h1 class="title" id = "typewrite-wrapper">
+                <span class = "is-red">:(&nbsp</span><span class="typewrite" data-period="2000" data-type='["Even the things we love break sometimes.", "This page does not exist.", "We didn\u2018t eat it, we swear!"]'></span>
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    {% include 'footer.html' %}
+
+    <!-- Main JS File -->
+    <script type="text/javascript" src="./static/js/typewrite.js"></script>
+
+  </body>
+
+</html>
+
+
+
+<!--
+We first identify what people are buying over and over again. We group the items by category, merchant, and purchase frequency. We then use machine learning to pick and choose the right discounts for you. -->

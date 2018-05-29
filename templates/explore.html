@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  {% include 'header.html' %}
+
+  <body>
+
+    {% include 'navbar.html' %}
+
+    <section class="is-small">
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <h1 class="title">
+              Explore Discounts Near You
+            </h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class = "hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            <div class="column">
+              <div id="map"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+    </section>
+
+    {% include 'footer.html' %}
+
+    <!-- Main JS File -->
+    <script type="text/javascript" src="./static/js/index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+
+      let map;
+
+      function initMap() {
+
+        // get the lat, lng of the client
+        $.ajax({url: "https://freegeoip.net/json/", success: function(ipData){
+
+          var myLatLng = {lat: ipData.latitude, lng: ipData.longitude};
+
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 6,
+            center: myLatLng
+          });
+
+          // get discounts from the server given the ip address
+          $.ajax({url: "/api/discounts", data: {"lat": ipData.latitude, "lng": ipData.longitude}, success: function(data){
+            for (let i = 0; i < data.length; i++){
+              var marker = new google.maps.Marker({ // create markers
+                position: {lat: data[i].latitude, lng: data[i].longitude},
+                map: map,
+                icon: "./static/images/mapmarker.png"
+              });
+            }
+          }});
+
+        }});
+
+      }
+    </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD36wlSO1NNFgT4JNn0YhbknoeEMt8EY0M&callback=initMap" async defer></script>
+
+
+
+  </body>
+
+</html>

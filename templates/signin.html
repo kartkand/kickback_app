@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+
+{% include 'header.html' %}
+
+
+<body>
+  <section class="hero is-medium is-red-bg" id = "signup-section">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns">
+          <div class="column level is-offset-4 is-4">
+            <h1 class="title level-item is-2 is-white">
+              <strong><a class = "is-white" href="/">Kickback</a></strong>
+            </h1>
+            <h1 class="subtitle level-item is-3 is-white">
+              Sign In
+            </h1>
+            <form action="" method="post" enctype="multipart/form-data">
+              <div class="level">
+                <input class = "level-item input" type="text" name="username" placeholder="Username" required/>
+              </div>
+              <div class="level">
+                <input class = "level-item input" type="password" name="password" placeholder="Password" required/>
+              </div>
+              <div class="level">
+                <input class = "level-item input button" type="submit" value="Sign In"/>
+              </div>
+            </form>
+            <br>
+            <div class = "level">
+              <p class = "level-item is-white">No Account? <a class = "is-white" href="/signup/"> &nbsp Sign Up</a> </p>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+
+</html>

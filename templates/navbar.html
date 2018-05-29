@@ -1,0 +1,26 @@
+<nav class="navbar is-spaced">
+    <div class="container">
+        <div class="navbar-brand">
+            <h1 class="title is-1 is-red"><a href="/" style="color: inherit;">Kickback</a></h1>
+        </div>
+        <div class="navbar-menu is-active">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <a href="/dashboard" class = "is-red">Dashboard</a>
+                </div>
+                <div class="navbar-item">
+                    <a href="/explore" class = "is-red">Explore</a>
+                </div>
+                {% if loggedin == 0 %}
+                <div class="navbar-item">
+                    <a href="/signin/" class = "is-red">Sign In</a>
+                </div>
+                {% else %}
+                <div class="navbar-item">
+                    <a href="/signout/" class = "is-red">Sign Out</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>

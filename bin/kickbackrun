@@ -1,0 +1,18 @@
+#!/bin/bash
+# kickbackrun
+#      run from root directory
+
+# Stop on errors
+set -e
+
+# Call kickbackdb create if not database file exists
+# if [ ! -f var/kickback.sqlite3 ]; then
+#     bin/kdb create
+# fi
+
+# Set FLASK_DEBUG, FLASK_APP and KICKBACK_SETTINGS environment variables
+export FLASK_DEBUG=True
+export FLASK_APP=app.py
+
+# Run the development server on port 8000
+flask run --host 0.0.0.0 --port 8000

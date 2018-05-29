@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+
+:root{
+  --white: #F6F6F6;
+  --darkgreen: #254441;
+  --red: #FF6F59;
+  --green: #43AA8B;
+  --lightred: #EF3054;
+}
+
+body {
+  font-family: 'Cabin';
+  background-color: #F6F6F6;
+  overflow-x: hidden;
+}
+
+.navbar {
+  background-color: #F6F6F6;
+}
+
+/* Modifier Classes */
+
+.is-red{
+  color: var(--red);
+}
+
+.is-red-bg{
+  background-color: var(--red);
+}
+
+.is-lightred{
+  color: var(--lightred);
+}
+
+.is-lightred-bg{
+  background-color: var(--lightred);
+}
+
+.is-darkgreen{
+  color: var(--darkgreen);
+}
+
+.is-green{
+  color: var(--green);
+}
+
+.is-darkgreen-bg{
+  background-color: var(--darkgreen);
+}
+
+.is-white{
+  color: var(--white);
+}
+
+.is-white-bg{
+  background-color: var(--white);
+}
+
+.has-shadow{
+  box-shadow: 0 4px 10px 0 rgba(0,0,0,0.24);
+}
+
+.is-rounded{
+  border-radius: 6px;
+}
+
+.is-xl{
+  font-size: 60px;
+}
+
+.is-l{
+  font-size: 45px;
+}
+
+.is-m{
+  font-size: 18px;
+}
+
+.is-sm{
+  font-size: 22px;
+}
+
+/* Element Styling */
+
+/* Intro */
+
+#intro-section{
+  padding-bottom: 10%;
+}
+
+#typewrite-wrapper{
+  height:150px;
+}
+
+#get-started{
+  padding: 6px 0;
+  color: var(--white);
+}
+
+#get-started:hover{
+  cursor: pointer;
+}
+
+#dashboard-main-tile{
+  margin-top:10px;
+}
+
+.box{
+  border-radius: 0px !important;
+}
+
+.input{
+  border-radius: 0px !important;
+  box-shadow: none;
+  border: none;
+  outline: 0;
+}
+
+.input:hover{
+  border: none !important;
+}
+
+.input:focus{
+  box-shadow: none !important;
+}
+
+#map{
+  height: 600px;
+}
+
+#signup-section{
+  background-color: var(--red);
+  height: 100vh !important;
+}
+
+.button:hover{
+  cursor:pointer;
+}
+
+#similar-recommendations{
+  font-size: 0;
+}
+
+.columns.is-vcentered {
+  align-items: center;
+}
+
+#mockup{
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+}
+
+.step-image{
+  max-height: 170px;
+  width: auto;
+}
+
+#github-icon{
+  border: 1px solid var(--red);
+  border-radius: 4px;
+  padding: 4px 6px;
+}
+
+#github-icon:hover{
+  background-color: var(--red);
+  color: white;
+  cursor: pointer;
+}
+
+#footer-hr{
+  border: 1px solid var(--red);
+}
+
+.loader-wrapper{
+  height: calc(100%);
+  width: 100%;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  background-color: var(--white); /* Black fallback color */
+  overflow-x: hidden; /* Disable horizontal scroll */
+}
+
+#progress {
+    width: 40%;
+    margin-left: 30%;
+    background-color: #DBDBDB !important;
+    height: 30px;
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+#bar {
+    width: 1%;
+    height: 30px;
+    background-color: var(--red);
+    border-radius: 8px;
+    z-index: 1000;
+
+}
+
+@media (max-width: 1024px) {
+    .navbar-brand{
+      padding: 5px;
+    }
+    .navbar-menu{
+      box-shadow: none;
+      background-color: var(--white);
+      border-bottom: 1px solid var(--red);
+      margin-bottom: 10px;
+    }
+}

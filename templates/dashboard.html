@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  {% include 'header.html' %}
+
+  <body>
+
+    {% include 'navbar.html' %}
+
+    <div class="loader-wrapper level is-mobile">
+      <div id="progress">
+        <div id="bar"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="tile is-ancestor" id = "dashboard-main-tile">
+        <div class="tile is-8 is-vertical is-parent">
+          <div class="tile is-child box has-shadow">
+            <p class="title is-2">My Kickback</p>
+            <p class="subtitle is-3" id = "kickback"></p>
+          </div>
+          <div class="tile is-child box has-shadow">
+            <p class="title is-2">My Breakdown</p>
+            <table class="table is-fullwidth" id = "breakdown">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Money Spent</th>
+                  <th>Potential Savings</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="tile is-child box has-shadow">
+            <p class="title is-2">My Favorites</p>
+            <p class="subtitle is-3" id = "favorites"></p>
+          </div>
+        </div>
+        <div class="tile is-4 is-vertical is-parent">
+          <div class="tile is-child box has-shadow">
+            <p class="title is-2">My Spending</p>
+            <canvas id="pieChart" width="400" height="400"></canvas>
+          </div>
+          <div class="tile is-child box has-shadow">
+            <p class="title is-2">My Discounts</p>
+            <table class="table is-fullwidth" id = "myDiscounts">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Discount</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+    </div>
+
+    {% include 'footer.html' %}
+
+    <!-- Main JS File -->
+    <script type="text/javascript" src="./static/js/index.js"></script>
+    <!-- Chart.js -->
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+
+      $(document).ready(function(){
+        move();
+      });
+
+      // Loading Animation
+      function move() {
+          let elem = document.getElementById("bar");
+          let width = 1;
+          let id = setInterval(frame, 20);
+          function frame() {
+              if (width >= 100) {
+                  clearInterval(id);
+                  $(".loader-wrapper").fadeOut(500);
+              } else {
+                  width++;
+                  elem.style.width = width + '%';
+              }
+          }
+      }
+
+      let ctx = document.getElementById("pieChart").getContext('2d');
+
+      const backgroundColors = [
+        "#FF6F59",
+        "#FF816E",
+        "#FF9383",
+        "#FFA597",
+        "#FFB7AC",
+        "#FFC9C1",
+        "#FFDBD6",
+        "#FFEDEA"
+      ]
+
+      function shuffleArray(d) {
+        for (let c = d.length - 1; c > 0; c--) {
+          let b = Math.floor(Math.random() * (c + 1));
+          let a = d[c];
+          d[c] = d[b];
+          d[b] = a;
+        }
+        return d
+      };
+
+      // Categories AJAX Call
+      $.ajax({url: "/api/getCategories", success: function(categories){
+
+        let piechartData = [];
+        let piechartLabels = []
+        for (let i = 0; i < 5; i++){
+          piechartData.push(categories[i].sum);
+          piechartLabels.push(categories[i].name.replace(/\b\w/g, l => l.toUpperCase()));
+        }
+
+        let data = {
+            datasets: [{
+                data: piechartData,
+                backgroundColor: shuffleArray(backgroundColors)
+            }],
+
+            // These labels appear in the legend and in the tooltips when hovering different arcs
+            labels: piechartLabels
+        };
+
+        let myPieChart = new Chart(ctx,{
+          type: 'pie',
+          data: data,
+          options: {
+            legend: {
+                labels: {
+                    // This more specific font property overrides the global property
+                    fontFamily: 'Cabin'
+                }
+            }
+          }
+        });
+
+      }});
+
+      // Favorites AJAX Call
+      $.ajax({url: "/api/getRecurringPayments", success: function(data){
+        for (let i = 0; i < 5; i++){
+          $("#favorites").append(data[i].name);
+          if (i < 4){
+            $("#favorites").append(', ');
+          }
+        }
+      }});
+
+      // Breakdown & Kickback & My Discounts AJAX Call
+      $.ajax({url: "/api/savings", success: function(data){
+        for (let i = 0; i < data.breakdown.length; i++){
+          $("#breakdown tbody").append('<tr><th>'+data.breakdown[i].name+'</th><td>'+data.breakdown[i].category.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())+'</td><td>$'+data.breakdown[i].money_spent+'</td><td>$'+data.breakdown[i].potential_savings.toFixed(2)+'</td></tr>')
+        }
+        $("#kickback").append('$' + (data.savings_amt/6.0).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' per month');
+        $("#kickback").parent().css("max-height", "180px");
+        for (let i = 0; i < data.deals.length; i++){
+          var link = data.deals[i].link || "#";
+          if (link != "#")
+            $("#myDiscounts tbody").append('<tr><th>'+data.deals[i].merchant+'</th><td><a href="'+link+'">'+data.deals[i].description+'</a></td></tr>')
+          else
+            $("#myDiscounts tbody").append('<tr><th>'+data.deals[i].merchant+'</th><td>'+data.deals[i].description+'</td></tr>')
+        }
+      }});
+
+    </script>
+
+  </body>
+
+</html>
