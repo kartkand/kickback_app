@@ -7,6 +7,7 @@ Flask==0.12.2
 Flask-PyMongo==0.5.2
 geographiclib==1.49
 geopy==1.14.0
+gunicorn==19.8.1
 idna==2.6
 itsdangerous==0.24
 Jinja2==2.10
